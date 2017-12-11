@@ -18,16 +18,16 @@
         <p>{{ c.jobTitle }}</p>
         <h4><b>{{ c.company}}</b></h4>
         <br>
-
       </ion-item>
  
       <ion-card-content *ngIf="c.location">
         <b> {{ c.location.city }}</b><br>
-        
       </ion-card-content>
-      <ion-card-content *ngFor="let interest of c.interests">
-        <h3 class="interestTitle">{{interest}}</h3>
+      <ion-card-content class="interestTitle" *ngFor="let interest of c.interests">
+        <h3>{{interest}}</h3>
       </ion-card-content>
+      <br>
+      <br>
       <ion-row *ngIf="c.name">
         <ion-col>
           <button ion-button clear small icon-left color="primary" (click)="voteUp(false)">
