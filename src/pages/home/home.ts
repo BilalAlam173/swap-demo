@@ -1,6 +1,7 @@
 import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { usersProvider } from '../../providers/users/users';
 import 'rxjs/Rx';
 import {
   StackConfig,
@@ -22,8 +23,9 @@ export class HomePage {
   cards: Array<any>;
   stackConfig: StackConfig;
   recentCard: string = '';
+  users = [];
 
-  constructor(public navCtrl: NavController, private http: Http) {
+  constructor(public navCtrl: NavController,private userService: usersProvider, private http: Http) {
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth/2), 1);
@@ -35,6 +37,7 @@ export class HomePage {
         return 800;
       }
     };
+    this.users=this.userService.getUsers();
 
   }
 
@@ -79,6 +82,8 @@ export class HomePage {
     .map(data => data.json().results)
     .subscribe(result => {
       for (let val of result) {
+        val=Object.assign(val,this.users[Math.floor(Math.random()*this.users.length)]);
+        console.log(val);
         this.cards.push(val);
       }
     })

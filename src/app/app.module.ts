@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import { SwingModule } from 'angular2-swing';
+import { usersProvider } from '../providers/users/users';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SwingModule } from 'angular2-swing';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    usersProvider
   ]
 })
 export class AppModule {}
