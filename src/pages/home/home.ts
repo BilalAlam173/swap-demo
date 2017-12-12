@@ -38,7 +38,6 @@ export class HomePage {
       }
     };
     this.users=this.userService.getUsers();
-    console.log(this.users);
   }
 
   ngAfterViewInit() {
@@ -86,7 +85,6 @@ export class HomePage {
         val=Object.assign(val,this.users[Math.floor(Math.random()*this.users.length)]);
         
         this.cards.push(val);
-        console.log(this.cards.length);
       }
     })
   }
