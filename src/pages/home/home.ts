@@ -47,7 +47,7 @@ export class HomePage {
     });
 
     this.cards = [{email: ''}];
-    this.addNewCards(1);
+    this.addNewCards(10);
   }
 
   onItemMove(element, x, y, r) {
@@ -68,7 +68,9 @@ export class HomePage {
 
   voteUp(like: boolean) {
     let removedCard = this.cards.pop();
-    this.addNewCards(1);
+    if(this.cards.length<=5){
+    this.addNewCards(5);
+    }
     if (like) {
       this.recentCard = 'You liked: ' + removedCard.email;
     } else {
@@ -82,8 +84,9 @@ export class HomePage {
     .subscribe(result => {
       for (let val of result) {
         val=Object.assign(val,this.users[Math.floor(Math.random()*this.users.length)]);
-        console.log(val);
+        
         this.cards.push(val);
+        console.log(this.cards.length);
       }
     })
   }
